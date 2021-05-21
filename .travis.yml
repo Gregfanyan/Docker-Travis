@@ -1,4 +1,6 @@
 sudo: required
+language: generic
+
 services:
   - docker
 
@@ -6,4 +8,4 @@ before_install:
   - docker build -t gregfan/docker-tutorial -f Dockerfile.dev .
 
 script: 
- -  docker run gregfan/docker-tutorial npm run test -- --coverage
+  - docker run -e CI=true gregfan/docker-tutorial npm run test
