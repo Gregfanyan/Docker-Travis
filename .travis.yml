@@ -7,13 +7,14 @@ services:
 before_install:
   - docker build -t gregfan/docker-tutorial -f Dockerfile.dev .
 
-script: 
+script:
   - docker run -e CI=true gregfan/docker-tutorial npm run test
 
 deploy:
   provider: elasticbeanstalk
-  edge: true   
+  edge: true
   region: "us-east-1"
+  skip_cleanup: true
   app: "docker"
   env: "docker-env"
   bucket_name: "elasticbeanstalk-us-east-1-597614504301"
@@ -21,5 +22,4 @@ deploy:
   on:
     branch: master
     access_key_id: $AWS_ACCESS_KEY
-    secret_access_key:
-      secure: "$AWS_SECRET_KEY"
+    secret_access_key: "$AWS_SECRET_KEY"
