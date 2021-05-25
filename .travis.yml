@@ -11,7 +11,8 @@ script:
   - docker run -e CI=true gregfan/docker-tutorial npm run test
 
 deploy:
-  provider: elasticbeanstalk   
+  provider: elasticbeanstalk
+  edge: true   
   region: "us-east-1"
   name: "docker"
   env: "docker-env"
